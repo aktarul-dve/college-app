@@ -32,10 +32,18 @@ try {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: "https://college-app-one.vercel.app",
-  credentials:true,
-  methods:["GET","POST","PUT","DELETE"],
+  origin: function (origin, callback) {
+    const allowedOrigins = ['https://college-app-one.vercel.app'];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
+
 
 
 app.use(fileUpload({
