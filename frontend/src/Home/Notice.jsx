@@ -11,7 +11,7 @@ function Notice() {
   // API থেকে ডাটা লোড করা
   useEffect(() => {
     axios
-      .get("/api/ganarelNotice/getAllMainNotice")
+      .get("https://college-app-3.onrender.com/api/ganarelNotice/getAllMainNotice")
       .then((response) => setNotices(response.data))
       .catch((error) => console.error("Error fetching notices:", error));
   }, []);

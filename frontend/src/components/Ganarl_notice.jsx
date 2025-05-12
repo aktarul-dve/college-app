@@ -6,7 +6,7 @@ function Ganarl_notice() {
 
   const getNotice = async () => {
     try {
-      const { data } = await axios.get("/api/ganarelNotice/getGnNotice", {
+      const { data } = await axios.get("https://college-app-3.onrender.com/api/ganarelNotice/getGnNotice", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

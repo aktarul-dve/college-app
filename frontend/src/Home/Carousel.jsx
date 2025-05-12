@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Carousel() {
   const [images, setImages] = useState([]);
-  const API_URL = "/api/ganarelNotice/getSlider";
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getSlider";
 
   useEffect(() => {
     const fetchImages = async () => {

@@ -18,7 +18,7 @@ function register()  {
 
    try {
 
-    const res = await axios.post("/api/auth/register" ,
+    const res = await axios.post("https://college-app-3.onrender.com/api/auth/register" ,
       {name,email,password,phone,address}
     );
     if(res && res.data.success){

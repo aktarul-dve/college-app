@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 function Albums() {
 
   const [album , setAlbum] = useState([]);
-  const API_URL = "/api/ganarelNotice/getAlbume";
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getAlbume";
 
   useEffect(() => {
     const fetchImages = async () => {

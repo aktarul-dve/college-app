@@ -6,7 +6,7 @@ function News_Events() {
 
   const [news, setNews] = useState([]);
   const [showAll, setShowAll] = useState(false);
-  const API_URL = "/api/ganarelNotice/getNews";
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getNews";
 
 
   useEffect(() => {
