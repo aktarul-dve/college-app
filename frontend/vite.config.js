@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:4001', // আপনার ব্যাকএন্ড সার্ভারের ঠিকানা
+        target: 'https://college-app-3.onrender.com', // আপনার ব্যাকএন্ড সার্ভারের ঠিকানা
         changeOrigin: true,
         secure: false,
       },
