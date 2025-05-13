@@ -6,10 +6,12 @@ import { useAuth } from "../context/auth";
 function Navbar() {
   const [auth, setAuth] = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false); // New dropdown state
 
   const handleLogout = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("auth");
+    setDropdownOpen(false);
   };
 
   const toggleMenu = () => {
@@ -100,31 +102,38 @@ function Navbar() {
         </ul>
 
         {/* Desktop Auth Buttons */}
-        <div className=" gap-3">
+        <div className="relative hidden md:flex items-center gap-3">
           {!auth.user ? (
             <>
               <Link to="/register" className="bg-yellow-500 hover:bg-yellow-600 px-2 py-1 rounded text-black font-medium">Register</Link>
               <Link to="/login" className="bg-white hover:bg-gray-100 px-2 py-1 rounded text-black font-medium">Login</Link>
             </>
           ) : (
-            <div className="relative group">
-              <span className="cursor-pointer bg-yellow-500 px-4 py-1 rounded text-black font-medium">
+            <div className="relative">
+              <span
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="cursor-pointer bg-yellow-500 px-4 py-1 rounded text-black font-medium"
+              >
                 {auth?.user?.name}
               </span>
-              <ul className="absolute right-0 mt-2 hidden group-hover:flex flex-col bg-white text-black rounded shadow-md w-48 z-10">
-                <Link
-                  to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                  className="px-4 py-2 hover:bg-gray-200"
-                >
-                  Dashboard
-                </Link>
-                <span
-                  onClick={handleLogout}
-                  className="px-4 py-2 hover:bg-red-100 cursor-pointer"
-                >
-                  Logout
-                </span>
-              </ul>
+
+              {dropdownOpen && (
+                <ul className="absolute right-0 mt-2 flex flex-col bg-white text-black rounded shadow-md w-48 z-50">
+                  <Link
+                    to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                    className="px-4 py-2 hover:bg-gray-200"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <span
+                    onClick={handleLogout}
+                    className="px-4 py-2 hover:bg-red-100 cursor-pointer"
+                  >
+                    Logout
+                  </span>
+                </ul>
+              )}
             </div>
           )}
         </div>
