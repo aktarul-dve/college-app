@@ -68,7 +68,7 @@ function Navbar() {
 
           {/* Mobile Auth Buttons */}
           {isMenuOpen && (
-            <div className="md:hidden flex flex-col gap-2 mt-2 w-full">
+            <div className=" flex flex-col gap-2 mt-2 w-full">
               {!auth.user ? (
                 <>
                   <Link to="/register" className="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded text-black text-center">
