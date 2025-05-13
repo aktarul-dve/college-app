@@ -13,7 +13,7 @@ export default function AdminRoute(){
 
     useEffect (()=>{
         const authCheck = async() =>{
-            const res = await axios.get("/api/auth/admin-auth",{
+            const res = await axios.get("https://college-app-3.onrender.com/api/auth/admin-auth",{
                 headers:{
                     Authorization: `Bearer ${auth?.token}`,
                 },
