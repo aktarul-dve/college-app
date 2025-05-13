@@ -21,6 +21,7 @@ function Carousel() {
   }, []);
 
   return (
+    <div className="w-full overflow-x-hidden">
     <div className="max-w-5xl mx-auto mt-8 px-4">
       <ResponsiveCarousel
         showThumbs={false}
@@ -55,6 +56,8 @@ function Carousel() {
         )}
       </ResponsiveCarousel>
     </div>
+  </div>
+  
   );
 }
 
