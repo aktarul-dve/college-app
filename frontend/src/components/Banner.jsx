@@ -24,7 +24,7 @@ function Banner() {
 
       {/* নোটিশ */}
       <div className="text-white absolute bottom-0 w-full flex items-center space-x-2 text-sm md:text-lg lg:text-2xl overflow-hidden">
-        <h1 className="w-200">নোটিশ:</h1>
+        <h1 className="w-200 ml-2">নোটিশ:</h1>
         <Marquee>
           <Ganarl_notice />
         </Marquee>
