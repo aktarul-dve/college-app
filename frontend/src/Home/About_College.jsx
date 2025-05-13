@@ -30,7 +30,7 @@ function About_College() {
 
   const getPrancipla = async () => {
     try {
-      const { data } = await axios.get("/api/ganarelNotice/GetPancipal", {
+      const { data } = await axios.get("https://college-app-3.onrender.com/api/ganarelNotice/GetPancipal", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
