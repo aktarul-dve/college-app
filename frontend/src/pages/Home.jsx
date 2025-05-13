@@ -8,18 +8,18 @@ import News_Events from '../Home/News_Events';
 
 function Home() {
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto px-4">
       <Helmet>
         <title>নেকমরদ বঙ্গবন্ধু সরকারি কলেজ</title>
         <meta name="description" content="Official homepage of Thakurgaon Govt. College. Get updates on notices, news, events and more." />
         <meta name="keywords" content="Thakurgaon College, Govt College, College BD, TGC Notice, Student Result" />
       </Helmet>
 
-      <Carousel/>
-      <About_College/>
-      <Notice/>
-      <Albums/>
-      <News_Events/>
+      <Carousel />
+      <About_College />
+      <Notice />
+      <Albums />
+      <News_Events />
     </div>
   );
 }
