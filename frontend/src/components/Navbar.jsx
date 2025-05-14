@@ -36,17 +36,17 @@ function Navbar() {
           } md:flex flex-col md:flex-row items-start md:items-center absolute md:static top-16 left-0 w-full md:w-auto bg-slate-700 md:bg-transparent px-4 md:px-0 space-y-2 md:space-y-0 md:space-x-6`}
         >
           <li>
-            <Link to="/" className="hover:text-yellow-400 py-2">
+            <Link to="/" className="hover:text-blue-400 hover:bg-white py-1 px-1">
               HOME
             </Link>
           </li>
 
           {/* Dropdown - About */}
           <li className="relative group">
-            <span className="cursor-pointer hover:text-yellow-400 py-2">
+            <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               ABOUT US
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-black rounded shadow-md w-48 z-10">
+            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
               <Link to="/about_us" className="px-4 py-2 hover:bg-gray-200">
                 About Institute
               </Link>
@@ -55,10 +55,10 @@ function Navbar() {
 
           {/* Dropdown - Departments */}
           <li className="relative group">
-            <span className="cursor-pointer hover:text-yellow-400 py-2">
+            <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               DEPARTMENTS
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-black rounded shadow-md w-48 z-10">
+            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
               <Link to="/deprtment" className="px-4 py-2 hover:bg-gray-200">
                 Departments
               </Link>
@@ -67,31 +67,44 @@ function Navbar() {
 
           {/* Dropdown - Academic */}
           <li className="relative group">
-            <span className="cursor-pointer hover:text-yellow-400 py-2">
+            <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               ACADEMIC
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-black rounded shadow-md w-48 z-10">
-              <Link to="/departments/cse" className="px-4 py-2 hover:bg-gray-200">
+            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
+              <Link to="/departments/cse" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
                 Teacher's Info
               </Link>
-              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200">
+              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
                 Student's Info
               </Link>
             </ul>
           </li>
 
           <li>
-            <Link to="/notice" className="hover:text-yellow-400 py-2">
+            <Link to="/notice" className="hover:text-blue-400 hover:bg-white py-1 px-1">
               NOTICES
             </Link>
           </li>
-          <li>
-            <span className="cursor-pointer hover:text-yellow-400 py-2">
+          {/* Dropdown - Payment */}
+          <li className="relative group">
+            <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               PAYMENT
             </span>
+            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10 ">
+              <Link to="/departments/cse" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full ">
+                Admission 
+              </Link>
+              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
+                Form fill-up
+              </Link>
+              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
+                Admit Card Download
+              </Link>
+              
+            </ul>
           </li>
           <li>
-            <Link to="/results" className="hover:text-yellow-400 py-2">
+            <Link to="/results" className="hover:text-blue-400 hover:bg-white py-1 px-1">
               RESULTS
             </Link>
           </li>

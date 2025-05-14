@@ -10,7 +10,7 @@ function Banner() {
         {/* লোগো এবং শিরোনাম */}
         <div className="flex items-center w-full">
           <img src={logo} alt="logo" className=" w-20 " />
-          <h1 className="font-solaiman text-white text-center flex-grow text-2xl md:text-lg lg:text-5xl">
+          <h1 className="font-solaiman text-white text-center flex-grow text-[17px] md:text-lg lg:text-5xl">
             নেকমরদ বঙ্গবন্ধু সরকারি কলেজ
           </h1>
         </div>
