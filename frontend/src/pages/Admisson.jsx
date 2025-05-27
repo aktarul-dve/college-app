@@ -15,7 +15,7 @@ const Admission = () => {
     setLoading(true);
     try {
       const encodedLevel = encodeURIComponent(level); // space-safe API call
-      const res = await axios.get(`http://localhost:4001/api/events/level/${encodedLevel}`);
+      const res = await axios.get(`https://college-app-3.onrender.com/api/events/level/${encodedLevel}`);
       setEvents(res.data); // Assuming res.data is an array
     } catch (error) {
       console.error("Failed to fetch events:", error);
