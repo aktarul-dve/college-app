@@ -46,10 +46,12 @@ function Navbar() {
             <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               ABOUT US
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
-              <Link to="/about_us" className="px-4 py-2 hover:bg-gray-200">
-                About Institute
-              </Link>
+            <ul className="absolute left-0 mt-2 hidden group-hover:inline-block bg-white text-blue-400 rounded shadow-md w-48 z-10">
+              <li>
+                <Link to="/about_us" className="px-4 py-2 block hover:bg-gray-200">
+                  About Institute
+                </Link>
+              </li>
             </ul>
           </li>
 
@@ -58,10 +60,12 @@ function Navbar() {
             <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               DEPARTMENTS
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
-              <Link to="/deprtment" className="px-4 py-2 hover:bg-gray-200">
-                Departments
-              </Link>
+            <ul className="absolute left-0 mt-2 hidden group-hover:inline-block bg-white text-blue-400 rounded shadow-md w-48 z-10">
+              <li>
+                <Link to="/deprtment" className="px-4 py-2 block hover:bg-gray-200">
+                  Departments
+                </Link>
+              </li>
             </ul>
           </li>
 
@@ -70,13 +74,17 @@ function Navbar() {
             <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               ACADEMIC
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10">
-              <Link to="/departments/cse" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
-                Teacher's Info
-              </Link>
-              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
-                Student's Info
-              </Link>
+            <ul className="absolute left-0 mt-2 hidden group-hover:inline-block bg-white text-blue-400 rounded shadow-md w-48 z-10">
+              <li>
+                <Link to="/departments/cse" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                  Teacher's Info
+                </Link>
+              </li>
+              <li>
+                <Link to="/departments/eee" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                  Student's Info
+                </Link>
+              </li>
             </ul>
           </li>
 
@@ -85,24 +93,31 @@ function Navbar() {
               NOTICES
             </Link>
           </li>
+
           {/* Dropdown - Payment */}
           <li className="relative group">
             <span className="cursor-pointer hover:text-blue-400 hover:bg-white py-1 px-1">
               PAYMENT
             </span>
-            <ul className="absolute left-0 mt-2 hidden group-hover:flex flex-col bg-white text-blue-400 rounded shadow-md w-48 z-10 ">
-              <Link to="/departments/cse" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full ">
-                Admission 
-              </Link>
-              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
-                Form fill-up
-              </Link>
-              <Link to="/departments/eee" className="px-4 py-2 hover:bg-gray-200 border-b-2 border-black w-full">
-                Admit Card Download
-              </Link>
-              
+            <ul className="absolute left-0 mt-2 hidden group-hover:inline-block bg-white text-blue-400 rounded shadow-md w-48 z-10">
+              <li>
+                <Link to="/departments/cse" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                  Admission
+                </Link>
+              </li>
+              <li>
+                <Link to="/departments/eee" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                  Form fill-up
+                </Link>
+              </li>
+              <li>
+                <Link to="/departments/eee" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                  Admit Card Download
+                </Link>
+              </li>
             </ul>
           </li>
+
           <li>
             <Link to="/results" className="hover:text-blue-400 hover:bg-white py-1 px-1">
               RESULTS
@@ -138,19 +153,23 @@ function Navbar() {
 
               {dropdownOpen && (
                 <ul className="absolute right-0 mt-2 flex flex-col bg-white text-black rounded shadow-md w-48 z-50">
-                  <Link
-                    to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                    className="px-4 py-2 hover:bg-gray-200"
-                    onClick={() => setDropdownOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <span
-                    onClick={handleLogout}
-                    className="px-4 py-2 hover:bg-red-100 cursor-pointer"
-                  >
-                    Logout
-                  </span>
+                  <li>
+                    <Link
+                      to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                      className="px-4 py-2 block hover:bg-gray-200"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <span
+                      onClick={handleLogout}
+                      className="px-4 py-2 block hover:bg-red-100 cursor-pointer"
+                    >
+                      Logout
+                    </span>
+                  </li>
                 </ul>
               )}
             </div>
