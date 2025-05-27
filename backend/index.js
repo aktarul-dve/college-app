@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 
 import GNROTE from './routes/GN_route.js'
 import authRoutes from './routes/auth.js'
+import eventRoutes from './routes/eventRoutes.js';
 import { v2 as cloudinary } from 'cloudinary';
 import fileUpload from "express-fileupload";
 
@@ -34,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = ['https://college-app-one.vercel.app',
-      'http://localhost:5173/'
+      'http://localhost:5173'
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -56,6 +57,7 @@ app.use(fileUpload({
 //defining routes
 app.use("/api/ganarelNotice",GNROTE)
 app.use("/api/auth",authRoutes)
+app.use('/api/events', eventRoutes);
 
 //Cloudinary
 

@@ -22,6 +22,7 @@ import PrivateRoute from "./components/Routers/privat";
 import AdminRoute from "./components/Routers/adminRoute";
 import Notice_View from "./pages/Notice_View";
 import News_Events from "./pages/News_Events";
+import Admisson from "./pages/Admisson";
 
 function Layout() {
   const location = useLocation();
@@ -84,6 +85,7 @@ function Layout() {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/notice_view" element={<Notice_View/>} />
           <Route exact path="/news_events" element={<News_Events/>} />
+          <Route exact path="/admission" element={<Admisson/>} />
         
           <Route exact path="/dashboard" element={<PrivateRoute/>} >
           <Route exact path="user" element={<UserDashboard/>}/>

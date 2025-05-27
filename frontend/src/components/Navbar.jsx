@@ -101,7 +101,7 @@ function Navbar() {
             </span>
             <ul className="absolute left-0 mt-2 hidden group-hover:inline-block bg-white text-blue-400 rounded shadow-md w-48 z-10">
               <li>
-                <Link to="/departments/cse" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
+                <Link to="/admission" className="px-4 py-2 block hover:bg-gray-200 border-b-2 border-black">
                   Admission
                 </Link>
               </li>
