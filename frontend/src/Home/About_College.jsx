@@ -57,7 +57,7 @@ function About_College() {
   return (
     <div className="px-4 py-6 bg-gray-100 text-gray-800">
       <h1 className="font-solaiman text-2xl font-bold text-center mb-4">
-        নেকমরদ বঙ্গবন্ধু সরকারি কলেজ
+        নেকমরদ সরকারি কলেজ
       </h1>
 
       {/* গ্রিড লেআউট */}

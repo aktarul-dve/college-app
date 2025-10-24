@@ -129,12 +129,7 @@ function Navbar() {
         <div className="relative flex items-center gap-3">
           {!auth.user ? (
             <>
-              <Link
-                to="/register"
-                className="bg-yellow-500 hover:bg-yellow-600 px-2 py-1 rounded text-black font-medium"
-              >
-                Register
-              </Link>
+              
               <Link
                 to="/login"
                 className="bg-white hover:bg-gray-100 px-2 py-1 rounded text-black font-medium"

@@ -46,9 +46,7 @@ function login()  {
       <div className='min-h-screen flex items-center justify-center bg-gray-100'>
         <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
           <form onSubmit={hendelSubmit}>
-            <div className='font-semibold text-xl items-center text-center'>
-              Cilli<span className='text-blue-500'>Blog</span>
-            </div>
+            
             <h1 className="text-xl font-semibold mb-6">Login</h1>
 
             <div className='mb-4'>
@@ -61,10 +59,10 @@ function login()  {
 
             <p className="text-center mb-4">
               Not registered?{" "}
-              <Link to="/login" className="text-blue-600">Login Now</Link>
+              <Link to="/register" className="text-blue-600">Register Now</Link>
             </p>
   
-            <button type="submit" className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white">Register</button>
+            <button type="submit" className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white">Login</button>
           </form>
         </div>
       </div>

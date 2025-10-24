@@ -41,9 +41,7 @@ function register()  {
       <div className='min-h-screen flex items-center justify-center bg-gray-100'>
         <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
           <form onSubmit={hendelSubmit}>
-            <div className='font-semibold text-xl items-center text-center'>
-              Cilli<span className='text-blue-500'>Blog</span>
-            </div>
+            
             <h1 className="text-xl font-semibold mb-6">Register</h1>
   
            
