@@ -31,7 +31,7 @@ function CreatePrincipal() {
     formData.append("photo", photo);
 
     try {
-      const response = await axios.post("/api/ganarelNotice/CreatPancipal", formData, {
+      const response = await axios.post("https://college-app-3.onrender.com/api/ganarelNotice/CreatPancipal", formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",

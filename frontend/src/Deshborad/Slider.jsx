@@ -18,7 +18,7 @@ function Slider() {
 
   const fetchImages = async () => {
     try {
-      const response = await axios.get("/api/ganarelNotice/getSlider");
+      const response = await axios.get("https://college-app-3.onrender.com/api/ganarelNotice/getSlider");
       setImages(response.data);
     } catch (error) {
       console.error("Error fetching images:", error);

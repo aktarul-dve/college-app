@@ -9,7 +9,7 @@ function SeePrancipla() {
 
   const getPrancipla = async () => {
     try {
-      const { data } = await axios.get("/api/ganarelNotice/GetPancipal", {
+      const { data } = await axios.get("https://college-app-3.onrender.com/api/ganarelNotice/GetPancipal", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ function SeePrancipla() {
         formData.append("photo", updatedPhoto);
       }
 
-      await axios.put(`/api/ganarelNotice/updatePancipal/${photoData._id}`, formData, {
+      await axios.put(`https://college-app-3.onrender.com/api/ganarelNotice/updatePancipal/${photoData._id}`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",

@@ -29,7 +29,7 @@ function CreateNewNotice() {
 
     try {
       const { data } = await axios.post(
-        "/api/ganarelNotice/mainNotice",
+        "https://college-app-3.onrender.com/api/ganarelNotice/mainNotice",
         formData,
         {
           headers: {

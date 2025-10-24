@@ -48,7 +48,7 @@ function SeeAlbum() {
     if (!confirmed) return;
 
     try {
-      const response = await fetch(`https://your-api-endpoint.com/images/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/images/${id}`, {
         method: "DELETE",
       });
 

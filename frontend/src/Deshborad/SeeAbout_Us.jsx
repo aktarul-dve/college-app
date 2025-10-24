@@ -8,7 +8,7 @@ function SeeAbout_Us() {
 
   const getNotice = async () => {
     try {
-      const { data } = await axios.get("/api/ganarelNotice/getAboutUs", {
+      const { data } = await axios.get("https://college-app-3.onrender.com/api/ganarelNotice/getAboutUs", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

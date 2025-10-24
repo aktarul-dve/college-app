@@ -12,7 +12,7 @@ function CreateAbout_Us() {
       const payload ={about_us }
       
       try {
-        const { data } = await axios.post("/api/ganarelNotice/creatAboutUs",payload, {
+        const { data } = await axios.post("https://college-app-3.onrender.com/api/ganarelNotice/creatAboutUs",payload, {
           headers: {
             "Content-Type": "application/json",
           },

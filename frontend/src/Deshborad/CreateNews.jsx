@@ -25,7 +25,7 @@ function CreateNews() {
     formData.append("description", description);
 
     try {
-      const response = await fetch("https://api.example.com/news", {
+      const response = await fetch("https://college-app-3.onrender.com/news", {
         method: "POST",
         body: formData,
       });

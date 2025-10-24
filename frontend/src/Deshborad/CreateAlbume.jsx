@@ -27,7 +27,7 @@ function CreateAlbume() {
     formData.append("photo", photo);
 
     try {
-      const response = await fetch("https://your-api-endpoint.com/principal", {
+      const response = await fetch("https://college-app-3.onrender.com/principal", {
         method: "POST",
         body: formData,
       });

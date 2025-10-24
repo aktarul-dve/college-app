@@ -12,7 +12,7 @@ function SeeGanralNotice() {
     const payload = { ganarelNotice };
   
     try {
-      const { data } = await axios.post('/api/ganarelNotice/ganarelN', payload, {
+      const { data } = await axios.post('https://college-app-3.onrender.com/api/ganarelNotice/ganarelN', payload, {
         headers: {
           "Content-Type": "application/json", // JSON হিসেবে পাঠান
         },
