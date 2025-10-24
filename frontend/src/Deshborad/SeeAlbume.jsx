@@ -1,46 +1,31 @@
 import React, { useState } from "react";
 
 function SeeAlbum() {
-  const images = [
-    {
-      id: 1,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 2,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 3,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 5,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 6,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 7,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 8,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-    {
-      id: 9,
-      url: "https://ems-files.softbd.xyz/thakurgaongovtcollege/images/institute_img/principal.png",
-    },
-  ];
+ 
+
+
 
   const [showAll, setShowAll] = useState(false);
 
   const toggleShowAll = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
+
+  const [album , setAlbum] = useState([]);
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getAlbume";
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        setAlbum(response.data); // Update images
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   // API call to delete an image
   const handleDelete = async (id) => {
@@ -94,7 +79,7 @@ function SeeAlbum() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {/* Display first 4 images or all images based on showAll state */}
-        {images.slice(0, showAll ? images.length : 4).map((image) => (
+        {album.slice(0, showAll ? album.length : 4).map((image) => (
           <div key={image.id} className="relative p-2 border rounded-lg shadow-lg">
             <img
               src={image.url}
