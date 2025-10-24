@@ -84,7 +84,7 @@ function SeeAlbum() {
         {album.slice(0, showAll ? album.length : 4).map((image) => (
           <div key={image.id} className="relative p-2 border rounded-lg shadow-lg">
             <img
-              src={image.url}
+              src={image.photo.url}
               alt={`album ${image.id}`}
               className="w-full h-48 object-cover rounded-lg"
             />
