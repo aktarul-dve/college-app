@@ -33,7 +33,7 @@ function SeeMainNotice() {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await axios.get('https://college-app-1.onrender.com/api/ganarelNotice/getAllMainNotice');
+        const response = await axios.get('https://college-app-3.onrender.com/api/ganarelNotice/getAllMainNotice');
         setNotices(response.data);
         setLoading(false);
       } catch (err) {
