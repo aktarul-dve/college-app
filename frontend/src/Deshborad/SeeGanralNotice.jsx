@@ -30,7 +30,7 @@ function SeeGanralNotice() {
 
     try {
       const noticeId = notice[0]._id; // Assuming you update the first notice
-      await axios.put(`/api/ganarelNotice/update/${noticeId}`, 
+      await axios.put(`https://college-app-3.onrender.com/api/ganarelNotice/update/${noticeId}`, 
         { ganarelNotice: updatedNotice }, 
         {
           withCredentials: true,
@@ -51,7 +51,7 @@ function SeeGanralNotice() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/ganarelNotice/delete/${id}`, {
+      await axios.delete(`https://college-app-3.onrender.com/api/ganarelNotice/delete/${id}`, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       });
