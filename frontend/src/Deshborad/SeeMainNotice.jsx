@@ -72,7 +72,7 @@ function SeeMainNotice() {
       }
 
       const response = await axios.put(
-        `/api/ganarelNotice/maniNoticeupdate/${selectedNotice._id}`,
+        `https://college-app-3.onrender.com/api/ganarelNotice/maniNoticeupdate/${selectedNotice._id}`,
         formData,
         {
           headers: {
@@ -108,7 +108,7 @@ function SeeMainNotice() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/ganarelNotice/maniNoticedelete/${id}`);
+      await axios.delete(`https://college-app-3.onrender.com/api/ganarelNotice/maniNoticedelete/${id}`);
       setNotices((prevNotices) => prevNotices.filter((notice) => notice._id !== id));
       alert('Notice deleted successfully');
     } catch (err) {

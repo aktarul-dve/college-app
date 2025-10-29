@@ -91,8 +91,36 @@ function SeeGanralNotice() {
         <button
           className="px-4 py-2 bg-red-500 text-white rounded border border-gray-400 hover:bg-green-600"
           onClick={() => handleDelete(notice[0]._id)} // ডিলেট ফাংশন কল করুন
+           disabled={loading} //
         >
-          DELETE
+          {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Deleteing...
+              </div>
+            ) : (
+              "DELETE"
+            )}
+          
         </button>
       </div>
 
@@ -142,12 +170,12 @@ function SeeGanralNotice() {
                     d="M4 12a8 8 0 018-8v8z"
                   ></path>
                 </svg>
-                Saving in...
+                Saving...
               </div>
             ) : (
               "Save"
             )}
-                Save
+              
               </button>
             </div>
           </div>
