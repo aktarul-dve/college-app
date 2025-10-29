@@ -5,6 +5,7 @@ function SeeGanralNotice() {
   const [notice, setNotice] = useState([]);
   const [showModal, setShowModal] = useState(false); // মডাল কন্ট্রোল করার জন্য স্টেট
   const [updatedNotice, setUpdatedNotice] = useState(""); // আপডেটের জন্য ফর্মের ডেটা
+  const [loading, setLoading] = useState(false); // 🟢 নতুন state
 
   // নোটিস লোড করা
   const getNotice = async () => {
@@ -23,6 +24,7 @@ function SeeGanralNotice() {
 
   // নোটিস আপডেট করা
   const handleUpdate = async () => {
+    setLoading(true);
     if (!updatedNotice.trim()) {
       alert("Notice cannot be empty.");
       return;
@@ -42,6 +44,8 @@ function SeeGanralNotice() {
       getNotice(); // নোটিস রিফ্রেশ করুন
     } catch (error) {
       console.error("Error updating notice:", error);
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -49,6 +53,7 @@ function SeeGanralNotice() {
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this notice?");
     if (!confirmDelete) return;
+     setLoading(true);
 
     try {
       await axios.delete(`https://college-app-3.onrender.com/api/ganarelNotice/delete/${id}`, {
@@ -59,6 +64,8 @@ function SeeGanralNotice() {
       getNotice(); // নোটিস রিফ্রেশ করুন
     } catch (error) {
       console.error("Error deleting notice:", error);
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -108,9 +115,38 @@ function SeeGanralNotice() {
                 Cancel
               </button>
               <button
+                 
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
                 onClick={handleUpdate}
+                disabled={loading} //
               >
+                {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Saving in...
+              </div>
+            ) : (
+              "Save"
+            )}
                 Save
               </button>
             </div>
