@@ -61,7 +61,7 @@ function SeeAlbum() {
             <img
               src={image.photo.url}
               alt={`album ${image._id}`}
-              className="w-full h-48 object-cover rounded-lg"
+              className="w-full h-30 object-cover rounded-lg"
             />
             <div className="flex justify-between mt-2">
               <button
@@ -70,7 +70,7 @@ function SeeAlbum() {
                   loadingId === image._id
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-red-500 hover:bg-red-600"
-                } text-white px-4 py-1 rounded`}
+                } text-white px-2 py-2 rounded`}
                 disabled={loadingId === image._id}
               >
                 {loadingId === image._id ? (
