@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 function SeeAlbum() {
- 
-
-
-
   const [showAll, setShowAll] = useState(false);
+   const [loading, setLoading] = useState(false);
+
 
   const toggleShowAll = () => {
     setShowAll((prevShowAll) => !prevShowAll);
@@ -33,6 +31,7 @@ function SeeAlbum() {
   const handleDelete = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this image?");
     if (!confirmed) return;
+    setLoading(true);
 
     try {
       const response = await fetch(`https://college-app-3.onrender.com/images/${id}`, {
@@ -48,6 +47,8 @@ function SeeAlbum() {
     } catch (error) {
       console.error("Error deleting image:", error);
       alert("An error occurred while deleting the image.");
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -98,8 +99,35 @@ function SeeAlbum() {
               <button
                 onClick={() => handleDelete(image.id)}
                 className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
-              >
-                Delete
+                disabled = {loading}
+               >
+                {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Deleteing...
+              </div>
+            ) : (
+              "DELETE"
+            )}
               </button>
             </div>
           </div>

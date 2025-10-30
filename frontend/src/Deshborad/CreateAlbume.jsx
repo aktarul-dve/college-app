@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 function CreateAlbume() {
   const [photo, setPhoto] = useState("");
   const [photoPreview, setPhotoPreview] = useState("");
+  const [loading, setLoading] = useState(false);
   
 
   const handlePhotoChange = (e) => {
@@ -17,6 +18,7 @@ function CreateAlbume() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if ( !photo) {
       alert("Please fill in all fields!");
@@ -27,7 +29,7 @@ function CreateAlbume() {
     formData.append("photo", photo);
 
     try {
-      const response = await fetch("https://college-app-3.onrender.com/principal", {
+      const response = await fetch("https://college-app-3.onrender.com/api/ganarelNotice/creatAlbume", {
         method: "POST",
         body: formData,
       });
@@ -40,6 +42,8 @@ function CreateAlbume() {
     } catch (error) {
       console.error("Error submitting data:", error);
       alert("An error occurred while submitting data.");
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -79,8 +83,35 @@ function CreateAlbume() {
           <button
             type="submit"
             className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          >
-            Submit
+             disabled={loading}
+            >
+           {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Posting...
+              </div>
+            ) : (
+              "Post"
+            )}
           </button>
         </form>
       </div>
