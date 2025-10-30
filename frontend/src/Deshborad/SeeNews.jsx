@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function SeeNews() {
-  const [newsData, setNewsData] = useState([
-    { id: 1, thumbnail: "https://via.placeholder.com/150", title: "First News Title", details: "This is a brief detail about the first news.", link: "/news/1" },
-    { id: 2, thumbnail: "https://via.placeholder.com/150", title: "Second News Title", details: "This is a brief detail about the second news.", link: "/news/2" },
-    { id: 3, thumbnail: "https://via.placeholder.com/150", title: "Third News Title", details: "This is a brief detail about the third news.", link: "/news/3" },
-    { id: 4, thumbnail: "https://via.placeholder.com/150", title: "Fourth News Title", details: "This is a brief detail about the fourth news.", link: "/news/4" },
-    { id: 5, thumbnail: "https://via.placeholder.com/150", title: "Fifth News Title", details: "This is a brief detail about the fifth news.", link: "/news/5" },
-    { id: 6, thumbnail: "https://via.placeholder.com/150", title: "Sixth News Title", details: "This is a brief detail about the sixth news.", link: "/news/6" },
-  ]);
+   const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getNews";
+  const [newsData, setNewsData] = useState([]);
+   const [loading, setLoading] = useState(false); // 🟢 নতুন state
+  
 
   const [showAll, setShowAll] = useState(false);
 
@@ -16,12 +12,26 @@ function SeeNews() {
     setShowAll((prevShowAll) => !prevShowAll);
   };
 
+   useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get(API_URL);
+         setNewsData(response.data); // Update images
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
   const handleDelete = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this news?");
     if (!confirmed) return;
+    setLoading(true);
 
     try {
-      const response = await fetch(`https://your-api-endpoint.com/news/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/news/${id}`, {
         method: "DELETE",
       });
 
@@ -35,15 +45,18 @@ function SeeNews() {
     } catch (error) {
       console.error("Error deleting news:", error);
       alert("An error occurred while deleting the news.");
+    }finally {
+      setLoading(false);
     }
   };
 
   const handleUpdate = async (id) => {
     const newTitle = prompt("Enter the new title for this news:");
     if (!newTitle) return;
+    setLoading(true);
 
     try {
-      const response = await fetch(`https://your-api-endpoint.com/news/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/news/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: newTitle }),
@@ -63,6 +76,8 @@ function SeeNews() {
     } catch (error) {
       console.error("Error updating news:", error);
       alert("An error occurred while updating the news.");
+    }finally {
+      setLoading(false);
     }
   };
 

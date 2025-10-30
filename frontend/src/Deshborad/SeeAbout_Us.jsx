@@ -5,6 +5,7 @@ function SeeAbout_Us() {
   const [about, setAbout] = useState('');
   const [showModal, setShowModal] = useState(false); // মডাল স্টেট
   const [updatedNotice, setUpdatedNotice] = useState(''); // আপডেট হওয়া নোটিস
+  const [loading, setLoading] = useState(false); // 🟢 নতুন state
 
   const getNotice = async () => {
     try {
@@ -21,6 +22,7 @@ function SeeAbout_Us() {
   };
 
   const handleUpdate = async () => {
+    setLoading(true);
     if (!about[0]?._id) {
       console.error("No valid ID found!");
       return;
@@ -28,7 +30,7 @@ function SeeAbout_Us() {
   
     try {
       const response = await axios.put(
-        `/api/ganarelNotice/updateAboutUs/${about[0]._id}`, // এখানে ID যুক্ত করা হয়েছে
+        `https://college-app-3.onrender.com/api/ganarelNotice/updateAboutUs/${about[0]._id}`, // এখানে ID যুক্ত করা হয়েছে
         { about_us: updatedNotice }, // নতুন ডাটা পাঠানো হচ্ছে
         {
           withCredentials: true,
@@ -43,6 +45,8 @@ function SeeAbout_Us() {
       getNotice(); // নতুন ডাটা রিফ্রেশ করুন
     } catch (error) {
       console.error("Error updating notice:", error);
+    }finally {
+      setLoading(false);
     }
   };
   
@@ -52,7 +56,7 @@ function SeeAbout_Us() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/ganarelNotice/deleteAboutUs/${id}`, {
+      await axios.delete(`https://college-app-3.onrender.com/api/ganarelNotice/deleteAboutUs/${id}`, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       });
@@ -90,8 +94,35 @@ function SeeAbout_Us() {
           type="button"
           className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           onClick={ () => handleDelete(about[0]?._id)}
+          disabled={loading} //
         >
-          Delete
+         {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Deleteing...
+              </div>
+            ) : (
+              "DELETE"
+            )}
         </button>
       </div>
 
@@ -116,8 +147,35 @@ function SeeAbout_Us() {
               <button
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
                 onClick={handleUpdate}
+                disabled={loading} //
               >
-                Save
+               {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Saving...
+              </div>
+            ) : (
+              "Save"
+            )}
               </button>
             </div>
           </div>
