@@ -34,7 +34,7 @@ function SeeAlbum() {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://college-app-3.onrender.com/images/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/api/ganarelNotice/deleteAlbume/${id}`, {
         method: "DELETE",
       });
 
