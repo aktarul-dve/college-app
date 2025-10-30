@@ -70,7 +70,7 @@ function SeeAlbum() {
             <div className="flex justify-between mt-2">
              
               <button
-                onClick={() => handleDelete(image.photo._id)}
+                onClick={() => handleDelete(image._id)}
                 className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
                 disabled = {loading}
                >
