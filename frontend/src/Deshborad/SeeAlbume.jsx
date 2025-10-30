@@ -63,14 +63,14 @@ function SeeAlbum() {
               alt={`album ${image._id}`}
               className="w-full h-30 object-cover rounded-lg"
             />
-            <div className="flex justify-between mt-2">
+            <div className="flex items-end justify-end mt-2">
               <button
                 onClick={() => handleDelete(image._id)}
                 className={`${
                   loadingId === image._id
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-red-500 hover:bg-red-600"
-                } text-white px-2 py-2 rounded`}
+                } text-white  rounded`}
                 disabled={loadingId === image._id}
               >
                 {loadingId === image._id ? (
