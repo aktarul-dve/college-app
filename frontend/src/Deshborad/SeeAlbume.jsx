@@ -52,29 +52,7 @@ function SeeAlbum() {
     }
   };
 
-  // API call to update an image
-  const handleUpdate = async (id) => {
-    const newUrl = prompt("Enter the new URL for this image:");
-    if (!newUrl) return;
-
-    try {
-      const response = await fetch(`https://your-api-endpoint.com/images/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: newUrl }),
-      });
-
-      if (response.ok) {
-        alert("Image updated successfully!");
-        // You can update the local state here to reflect the updated image
-      } else {
-        alert("Failed to update the image.");
-      }
-    } catch (error) {
-      console.error("Error updating image:", error);
-      alert("An error occurred while updating the image.");
-    }
-  };
+ 
 
   return (
     <div className="px-4 py-6">
@@ -90,14 +68,9 @@ function SeeAlbum() {
               className="w-full h-48 object-cover rounded-lg"
             />
             <div className="flex justify-between mt-2">
+             
               <button
-                onClick={() => handleUpdate(image.id)}
-                className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(image.id)}
+                onClick={() => handleDelete(image.photo.id)}
                 className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
                 disabled = {loading}
                >
