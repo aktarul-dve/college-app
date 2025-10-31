@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 function SeeNews() {
-   const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getNews";
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getNews";
   const [newsData, setNewsData] = useState([]);
-   const [loading, setLoading] = useState(false); // 🟢 নতুন state
+  const [loading, setLoading] = useState(false); // 🟢 নতুন state
+  const [showAll, setShowAll] = useState(false);
+
   
 
-  const [showAll, setShowAll] = useState(false);
+
 
   const toggleShowAll = () => {
     setShowAll((prevShowAll) => !prevShowAll);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(API_URL);
-         setNewsData(response.data); // Update images
+        setNewsData(response.data); // Update images
       } catch (error) {
         console.error("Error fetching images:", error);
       }
@@ -31,7 +33,7 @@ function SeeNews() {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://college-app-3.onrender.com/news/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/api/ganarelNotice/deleteNews/${id}`, {
         method: "DELETE",
       });
 
@@ -45,7 +47,7 @@ function SeeNews() {
     } catch (error) {
       console.error("Error deleting news:", error);
       alert("An error occurred while deleting the news.");
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -56,7 +58,7 @@ function SeeNews() {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://college-app-3.onrender.com/news/${id}`, {
+      const response = await fetch(`https://college-app-3.onrender.com/api/ganarelNotice/updateNews/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: newTitle }),
@@ -76,7 +78,7 @@ function SeeNews() {
     } catch (error) {
       console.error("Error updating news:", error);
       alert("An error occurred while updating the news.");
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
