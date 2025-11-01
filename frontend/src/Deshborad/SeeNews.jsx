@@ -93,31 +93,34 @@ function SeeNews() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedNews.map((news) => (
-          <div key={news.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div key={news._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
             {/* Thumbnail */}
-            <img src={news.thumbnail} alt={news.title} className="w-full h-48 object-cover" />
+            <img
+              src={news.photo?.url}
+              alt={news.tital}
+              className="w-full h-48 object-cover"
+            />
+
             {/* News Content */}
             <div className="p-4">
-              <h2 className="text-lg font-bold mb-2">{news.title}</h2>
+              <h2 className="text-lg font-bold mb-2">{news.tital}</h2>
               <p className="text-sm text-gray-600 mb-4">
-                {news.details && news.details.length > 60
-                  ? `${news.details.substring(0, 60)}...`
-                  : news.details || "No details available."}
+                {news.description && news.description.length > 60
+                  ? `${news.description.substring(0, 60)}...`
+                  : news.description || "No description available."}
               </p>
-              <a href={news.link} className="text-blue-500 hover:underline font-semibold">
-                Read More
-              </a>
             </div>
+
             {/* Update and Delete Buttons */}
             <div className="flex justify-between p-4 border-t">
               <button
-                onClick={() => handleUpdate(news.id)}
+                onClick={() => handleUpdate(news._id)}
                 className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
               >
                 Update
               </button>
               <button
-                onClick={() => handleDelete(news.id)}
+                onClick={() => handleDelete(news._id)}
                 className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
               >
                 Delete
@@ -126,6 +129,7 @@ function SeeNews() {
           </div>
         ))}
       </div>
+
 
       {/* "See All" or "Show Less" button */}
       <div className="text-center mt-4">
