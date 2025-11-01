@@ -103,13 +103,18 @@ function SeeNews() {
 
             {/* News Content */}
             <div className="p-4">
-              <h2 className="text-lg font-bold mb-2">{news.tital}</h2>
-              <p className="text-sm text-gray-600 mb-4">
-                {news.description && news.description.length > 60
-                  ? `${news.description.substring(0, 60)}...`
-                  : news.description || "No description available."}
-              </p>
+              <div>
+                <h2 className="text-lg font-bold mb-2">{news.tital}</h2>
+              </div>
+              <div className="mt-3">
+                <p className="text-sm text-gray-600 mb-4">
+                  {news.description && news.description.length > 60
+                    ? `${news.description.substring(0, 60)}...`
+                    : news.description || "No description available."}
+                </p>
+              </div>
             </div>
+
 
             {/* Update and Delete Buttons */}
             <div className="flex justify-between p-4 border-t">
