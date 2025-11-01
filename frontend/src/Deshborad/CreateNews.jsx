@@ -21,7 +21,7 @@ function CreateNews() {
 
     const formData = new FormData();
     formData.append("photo", photo);
-    formData.append("title", title);
+    formData.append("tital", title);
     formData.append("description", description);
 
     try {
