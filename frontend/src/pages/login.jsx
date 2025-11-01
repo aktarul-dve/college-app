@@ -5,68 +5,104 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from '../context/auth';
 
-function login()  {
+function login() {
 
   const navigate = useNavigate();
-  const [email, setEmail ] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [auth, setAuth] = useAuth();
-  
-  const hendelSubmit =async (e) =>{
+  const [loading, setLoading] = useState(false); // 🟢 নতুন state
+
+  const hendelSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-   try {
+    try {
 
-    const res = await axios.post("https://college-app-3.onrender.com/api/auth/login" ,
-      {email,password}
-    );
-    if(res && res.data.success){
-      alert(res.data.message)
-      navigate("/")
-      setAuth({
-        ...auth,
-        user: res.data.user,
-        token: res.data.token
-      });
-      localStorage.setItem("auth",JSON.stringify(res.data));
-    }else{
-      alert(res.data.message)
+      const res = await axios.post("https://college-app-3.onrender.com/api/auth/login",
+        { email, password }
+      );
+      if (res && res.data.success) {
+        alert(res.data.message)
+        navigate("/")
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+      } else {
+        alert(res.data.message)
 
+      }
+
+    } catch (error) {
+      console.log(error)
+      alert("Samthing went wrong")
+
+    } finally {
+      setLoading(false)
     }
 
-   } catch (error) {
-    console.log(error)
-    alert("Samthing went wrong")
-    
-   }
-
   }
 
-    return (
-      <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-        <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
-          <form onSubmit={hendelSubmit}>
-            
-            <h1 className="text-xl font-semibold mb-6">Login</h1>
+  return (
+    <div className='min-h-screen flex items-center justify-center bg-gray-100'>
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+        <form onSubmit={hendelSubmit}>
 
-            <div className='mb-4'>
-              <input type="email" placeholder='Your Email' value={email} onChange={(e) => setEmail(e.target.value)}  className='w-full p-2 border rounded-md' />
-            </div>
+          <h1 className="text-xl font-semibold mb-6">Login</h1>
 
-            <div className='mb-4'>
-              <input type="password" placeholder='Your Password'value={password} onChange={(e) => setPassword(e.target.value)}  className='w-full p-2 border rounded-md' />
-            </div>
+          <div className='mb-4'>
+            <input type="email" placeholder='Your Email' value={email} onChange={(e) => setEmail(e.target.value)} className='w-full p-2 border rounded-md' />
+          </div>
 
-            <p className="text-center mb-4">
-              Not registered?{" "}
-              <Link to="/register" className="text-blue-600">Register Now</Link>
-            </p>
-  
-            <button type="submit" className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white">Login</button>
-          </form>
-        </div>
+          <div className='mb-4'>
+            <input type="password" placeholder='Your Password' value={password} onChange={(e) => setPassword(e.target.value)} className='w-full p-2 border rounded-md' />
+          </div>
+
+          <p className="text-center mb-4">
+            Not registered?{" "}
+            <Link to="/register" className="text-blue-600">Register Now</Link>
+          </p>
+
+          <button
+            type="submit"
+            className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white"
+            disabled={loading}
+          >
+           {loading ? (
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Login...
+              </div>
+            ) : (
+              "Login"
+            )}
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default login
