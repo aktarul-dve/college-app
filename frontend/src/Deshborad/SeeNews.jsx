@@ -19,6 +19,7 @@ function SeeNews() {
     const fetchNews = async () => {
       try {
         const response = await axios.get(API_URL);
+        console.log(response.data)
         setNewsData(response.data); // Update images
       } catch (error) {
         console.error("Error fetching images:", error);
