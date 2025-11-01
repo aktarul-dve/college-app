@@ -25,7 +25,7 @@ function CreateNews() {
     formData.append("description", description);
 
     try {
-      const response = await fetch("https://college-app-3.onrender.com//api/ganarelNotice/creatNews", {
+      const response = await fetch("https://college-app-3.onrender.com/api/ganarelNotice/creatNews", {
         method: "POST",
         body: formData,
       });
