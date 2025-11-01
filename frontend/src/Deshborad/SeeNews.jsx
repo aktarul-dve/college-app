@@ -7,7 +7,7 @@ function SeeNews() {
   const [loading, setLoading] = useState(false); // 🟢 নতুন state
   const [showAll, setShowAll] = useState(false);
 
-  
+
 
 
 
@@ -100,9 +100,9 @@ function SeeNews() {
             <div className="p-4">
               <h2 className="text-lg font-bold mb-2">{news.title}</h2>
               <p className="text-sm text-gray-600 mb-4">
-                {news.details.length > 60
+                {news.details && news.details.length > 60
                   ? `${news.details.substring(0, 60)}...`
-                  : news.details}
+                  : news.details || "No details available."}
               </p>
               <a href={news.link} className="text-blue-500 hover:underline font-semibold">
                 Read More
