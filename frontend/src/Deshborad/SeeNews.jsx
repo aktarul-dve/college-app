@@ -98,40 +98,36 @@ function SeeNews() {
             <img
               src={news.photo?.url}
               alt={news.tital}
-              className="w-full h-48 object-cover"
+              className="w-1/3 h-48 object-cover"
             />
 
-            {/* News Content */}
-            <div className="p-4">
+            {/* Content */}
+            <div className="w-2/3 flex flex-col justify-between p-4">
               <div>
                 <h2 className="text-lg font-bold mb-2">{news.tital}</h2>
-              </div>
-              <div className="mt-3">
                 <p className="text-sm text-gray-600 mb-4">
                   {news.description && news.description.length > 60
                     ? `${news.description.substring(0, 60)}...`
                     : news.description || "No description available."}
                 </p>
               </div>
-            </div>
-
-
-            {/* Update and Delete Buttons */}
-            <div className="flex justify-between p-4 border-t">
-              <button
-                onClick={() => handleUpdate(news._id)}
-                className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(news._id)}
-                className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
+              <div className="flex justify-between mt-2">
+                <button
+                  onClick={() => handleUpdate(news._id)}
+                  className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDelete(news._id)}
+                  className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
+
         ))}
       </div>
 
