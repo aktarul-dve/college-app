@@ -15,6 +15,8 @@ import UserDashboard from "./pages/user/Dasborad"
 import About_College from "./Home/About_College";
 import Notice from "./Home/Notice";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 import GanarelNoticeCreate from "./Deshborad/GanarelNoticeCreate";
 import UpdateGanaralNotice from "./Deshborad/UpdateGanaralNotice";
 import { AuthProvider } from "./context/auth";
@@ -78,6 +80,7 @@ function Layout() {
       {/* Main Content */}
       <div className={`mt-0 ${topSpacing}`}>
         <Routes>
+           <ScrollToTop />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about_us" element={<About_College />} />
           <Route exact path="/deprtment" element={<Deprtment />} />
