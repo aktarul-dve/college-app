@@ -88,7 +88,7 @@ function SeeNews() {
                   className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
                   disabled={loadingId === news._id}
                 >
-                  {loadingId === image._id ? (
+                  {loadingId === news._id ? (
                   <div className="flex items-center gap-2">
                     <svg
                       className="animate-spin h-5 w-5 text-white"
