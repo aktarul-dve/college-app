@@ -83,7 +83,7 @@ function About_College() {
 
         {/* ইমেজ কন্টেন্ট */}
         <div className="text-center">
-        <div className="flex items-center justify-center mb-4">
+        <div className="flex items-center justify-center  border-spacing-1 border-r-green-400 rounded-lg  mb-4">
         {photoData?.photo ? (
           <img src={photoData.photo.url} alt="Principal" className="w-32 h-32 " />
         ) : (
