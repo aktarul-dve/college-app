@@ -1,33 +1,32 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function Teachers() {
-  const [teachers, setTeachers] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      designation: "Professor",
-      department: "Computer Science",
-      photo: "https://via.placeholder.com/50",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      designation: "Assistant Professor",
-      department: "Mathematics",
-      photo: "https://via.placeholder.com/50",
-    },
-  ]);
+  const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getTeacher";
+  const [teachers, setTeachers] = useState([]);
 
-  const handleUpdate = (id) => {
-    alert(`Update teacher with ID: ${id}`);
-    // Update logic here
-  };
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        console.log(response.data);
+        setTeachers(response.data);
+      } catch (error) {
+        console.error("Error fetching Teachers:", error);
+      }
+    };
+    fetchTeachers();
+  }, []);
 
   const handleDelete = (id) => {
     const confirmed = window.confirm("Are you sure you want to delete?");
     if (confirmed) {
-      setTeachers(teachers.filter((teacher) => teacher.id !== id));
+      setTeachers(teachers.filter((teacher) => teacher._id !== id));
     }
+  };
+
+  const handleUpdate = (id) => {
+    alert("Update function coming soon for ID: " + id);
   };
 
   return (
@@ -46,27 +45,27 @@ function Teachers() {
         </thead>
         <tbody>
           {teachers.map((teacher, index) => (
-            <tr key={teacher.id} className="text-center">
+            <tr key={teacher._id} className="text-center">
               <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
               <td className="border border-gray-300 px-4 py-2">{teacher.name}</td>
               <td className="border border-gray-300 px-4 py-2">{teacher.designation}</td>
               <td className="border border-gray-300 px-4 py-2">{teacher.department}</td>
               <td className="border border-gray-300 px-4 py-2">
                 <img
-                  src={teacher.photo}
+                  src={teacher.photo.url}
                   alt={teacher.name}
                   className="w-12 h-12 rounded-full mx-auto"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <button
-                  onClick={() => handleUpdate(teacher.id)}
+                  onClick={() => handleUpdate(teacher._id)}
                   className="bg-blue-500 text-white px-2 py-1 rounded mr-2 hover:bg-blue-700"
                 >
                   Update
                 </button>
                 <button
-                  onClick={() => handleDelete(teacher.id)}
+                  onClick={() => handleDelete(teacher._id)}
                   className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
                 >
                   Delete
