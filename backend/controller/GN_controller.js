@@ -293,9 +293,9 @@ export const CreatPancipal = async (req, res) => {
           return res.status(400).json({ message: "Invalid photo format. Only jpg and png are allowed" });
       }
 
-      const { name } = req.body;
+      const { name ,designation } = req.body;
 
-      if (!name || !photo) {
+      if (!name || !designation || !photo) {
           return res.status(400).json({ message: "Please fill all required fields" });
       }
 
@@ -309,6 +309,7 @@ export const CreatPancipal = async (req, res) => {
 
       const new_pancipal = new Pancipal({
           name,
+          designation,
           photo: {
               public_id: cloudinaryResponse.public_id,
               url: cloudinaryResponse.url,

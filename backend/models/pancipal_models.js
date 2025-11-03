@@ -7,6 +7,10 @@ const pancipalSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    designation:{
+        type:String,
+        required:true,
+    },
 
     photo:{
        public_id :{
