@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 function Teachers() {
   const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getTeacher";
   const [teachers, setTeachers] = useState([]);
+   const [loadingId, setLoadingId] = useState(null);
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -18,17 +19,32 @@ function Teachers() {
     fetchTeachers();
   }, []);
 
-  const handleDelete = (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete?");
-    if (confirmed) {
-      setTeachers(teachers.filter((teacher) => teacher._id !== id));
+ const handleDelete = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this Teachers?");
+    if (!confirmed) return;
+    setLoadingId(id); // ✅ লোডিং শুধু ওই ইমেজে দেখানো হবে
+
+    try {
+      const response = await fetch(
+        `https://college-app-3.onrender.com/api/ganarelNotice/deleteTeacher/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        alert("Image deleted successfully!");
+        setAlbum((prevAlbum) => prevAlbum.filter((image) => image._id !== id));
+      } else {
+        alert("Failed to delete the image.");
+      }
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      alert("An error occurred while deleting the image.");
+    } finally {
+      setLoadingId(null); // ✅ লোডিং রিসেট
     }
   };
-
-  const handleUpdate = (id) => {
-    alert("Update function coming soon for ID: " + id);
-  };
-
   return (
     <div className="max-w-4xl mx-auto mt-8 bg-white shadow-lg rounded-lg p-6">
       <h1 className="text-2xl font-bold text-center mb-4">Teachers</h1>
@@ -59,16 +75,37 @@ function Teachers() {
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <button
-                  onClick={() => handleUpdate(teacher._id)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded mr-2 hover:bg-blue-700"
-                >
-                  Update
-                </button>
-                <button
                   onClick={() => handleDelete(teacher._id)}
                   className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+                  disabled={loadingId === teacher._id}
                 >
-                  Delete
+                   {loadingId === image._id ? (
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      ></path>
+                    </svg>
+                    Deleting...
+                  </div>
+                ) : (
+                  "DELETE"
+                )}
                 </button>
               </td>
             </tr>
