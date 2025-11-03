@@ -79,7 +79,7 @@ function Teachers() {
                   className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
                   disabled={loadingId === teacher._id}
                 >
-                   {loadingId === image._id ? (
+                   {loadingId === teacher._id ? (
                   <div className="flex items-center gap-2">
                     <svg
                       className="animate-spin h-5 w-5 text-white"
