@@ -5,6 +5,7 @@ function CreatePrincipal() {
   const [photo, setPhoto] = useState(null);
   const [photoPreview, setPhotoPreview] = useState("");
   const [name, setName] = useState("");
+  const [designation, setDesignation] = useState("");
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
@@ -21,13 +22,14 @@ function CreatePrincipal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !photo) {
+    if (!name || !designation || !photo) {
       alert("Please fill in all fields!");
       return;
     }
 
     const formData = new FormData();
     formData.append("name", name);
+    formData.append("designation", designation);
     formData.append("photo", photo);
 
     try {
@@ -43,6 +45,7 @@ function CreatePrincipal() {
       if (response.status === 201) {
         alert("Principal created successfully!");
         setName("");
+        setDesignation("");
         setPhoto(null);
         setPhotoPreview("");
       } else {
@@ -87,13 +90,25 @@ function CreatePrincipal() {
           {/* Name Input */}
           <div className="mb-6">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Principal Name
+             Name
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter principal's name"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Designation
+            </label>
+            <input
+              type="text"
+              value={designation}
+              onChange={(e) => setDesignation(e.target.value)}
+              placeholder="Enter designation"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
