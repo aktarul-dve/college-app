@@ -27,7 +27,7 @@ function CreateTeachers() {
     formData.append("photo", photo);
 
     try {
-      const response = await fetch("https://college-app-3.onrender.com/creatTeacher", {
+      const response = await fetch("https://college-app-3.onrender.com/api/ganarelNotice/creatTeacher", {
         method: "POST",
         body: formData,
       });
