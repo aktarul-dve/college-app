@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 function About_College() {
   const [showFullText, setShowFullText] = useState(false);
-  const [about_us, setAboutText] = useState(""); 
- const [photoData, setPhoto] = useState("");
+  const [about_us, setAboutText] = useState("");
+  const [photoData, setPhoto] = useState("");
 
   // Function to toggle the state
   const toggleText = () => {
@@ -26,7 +26,7 @@ function About_College() {
     }
   };
 
- 
+
 
   const getPrancipla = async () => {
     try {
@@ -49,7 +49,7 @@ function About_College() {
 
 
   useEffect(() => {
-  
+
     fetchAboutUs();
     getPrancipla();
   }, []);
@@ -83,19 +83,23 @@ function About_College() {
 
         {/* ইমেজ কন্টেন্ট */}
         <div className="text-center">
-        <div className="flex items-center justify-center  border-spacing-1 border-r-green-400 rounded-lg  mb-4">
-        {photoData?.photo ? (
-          <img src={photoData.photo.url} alt="Principal" className="w-32 h-32 " />
-        ) : (
-          <p>Loading image...</p>
-        )}
-      </div>
-
-      {/* Name Section */}
-      <div className="flex items-center justify-center mb-4">
-        <p className="text-lg font-semibold">{photoData.name || "Loading name..."}</p>
-      </div>
+          <div className="flex flex-col items-center justify-center bg-white p-4 rounded-lg shadow-md">
+            {photoData?.photo ? (
+              <>
+                <img
+                  src={photoData.photo.url}
+                  alt="Principal"
+                  className="w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg object-cover mb-3"
+                />
+                <p className="text-lg font-semibold text-gray-800">{photoData.name || "Loading name..."}</p>
+                <p className="text-sm text-gray-600">{photoData.designation || "Principal"}</p>
+              </>
+            ) : (
+              <p>Loading image...</p>
+            )}
+          </div>
         </div>
+
       </div>
     </div>
   );
