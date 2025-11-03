@@ -36,7 +36,7 @@ function SeePrancipla() {
 
     try {
       const response = await fetch(
-        `https://college-app-3.onrender.com/api/ganarelNotice/updatePancipal/${id}`,
+        `https://college-app-3.onrender.com/api/ganarelNotice/deletePancipal/${id}`,
         {
           method: "DELETE",
         }
