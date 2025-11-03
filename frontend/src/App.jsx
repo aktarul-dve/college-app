@@ -23,6 +23,7 @@ import AdminRoute from "./components/Routers/adminRoute";
 import Notice_View from "./pages/Notice_View";
 import News_Events from "./pages/News_Events";
 import Admisson from "./pages/Admisson";
+import Teachers from "./pages/Teachers";
 
 function Layout() {
   const location = useLocation();
@@ -82,6 +83,7 @@ function Layout() {
           <Route exact path="/deprtment" element={<Deprtment />} />
           <Route exact path="/notice" element={<Notice />} />
           <Route exact path="/academic" element={<Academic />} />
+          <Route exact path="/teachers"  element={<Teachers/>} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/notice_view" element={<Notice_View/>} />
           <Route exact path="/news_events" element={<News_Events/>} />
