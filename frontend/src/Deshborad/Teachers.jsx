@@ -33,14 +33,14 @@ function Teachers() {
       );
 
       if (response.ok) {
-        alert("Image deleted successfully!");
-        setAlbum((prevAlbum) => prevAlbum.filter((image) => image._id !== id));
+        alert("Teacher deleted successfully!");
+        setTeachers((prevTeachers) => prevTeachers.filter((teacher) => teacher._id !== id));
       } else {
-        alert("Failed to delete the image.");
+        alert("Failed to delete the Teacher.");
       }
     } catch (error) {
-      console.error("Error deleting image:", error);
-      alert("An error occurred while deleting the image.");
+      console.error("Error deleting Teacher:", error);
+      alert("An error occurred while deleting the Teacher.");
     } finally {
       setLoadingId(null); // ✅ লোডিং রিসেট
     }
