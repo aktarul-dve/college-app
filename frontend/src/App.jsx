@@ -78,6 +78,8 @@ function Layout() {
         </div>
       )}
 
+      <ScrollToTop />
+
       {/* Main Content */}
       <div className={`mt-0 ${topSpacing}`}>
         <Routes>
@@ -118,7 +120,7 @@ function App() {
   return (
    <AuthProvider>
      <BrowserRouter>
-       <ScrollToTop />
+       
     
     <Layout />
    
