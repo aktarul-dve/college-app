@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 function SeeNews() {
   const API_URL = "https://college-app-3.onrender.com/api/ganarelNotice/getNews";
   const [newsData, setNewsData] = useState([]);
-  const [loading, setLoading] = useState(false); // 🟢 নতুন state
   const [showAll, setShowAll] = useState(false);
+   const [loadingId, setLoadingId] = useState(null);
 
 
 
@@ -32,7 +32,7 @@ function SeeNews() {
   const handleDelete = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this news?");
     if (!confirmed) return;
-    setLoading(true);
+   setLoadingId(id);
 
     try {
       const response = await fetch(`https://college-app-3.onrender.com/api/ganarelNotice/deleteNews/${id}`, {
@@ -50,40 +50,11 @@ function SeeNews() {
       console.error("Error deleting news:", error);
       alert("An error occurred while deleting the news.");
     } finally {
-      setLoading(false);
+      setLoadingId(null); // ✅ লোডিং রিসেট
     }
   };
 
-  const handleUpdate = async (id) => {
-    const newTitle = prompt("Enter the new title for this news:");
-    if (!newTitle) return;
-    setLoading(true);
-
-    try {
-      const response = await fetch(`https://college-app-3.onrender.com/api/ganarelNotice/updateNews/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: newTitle }),
-      });
-
-      if (response.ok) {
-        alert("News updated successfully!");
-        // Update local state to reflect the updated news
-        setNewsData(
-          newsData.map((news) =>
-            news.id === id ? { ...news, title: newTitle } : news
-          )
-        );
-      } else {
-        alert("Failed to update the news.");
-      }
-    } catch (error) {
-      console.error("Error updating news:", error);
-      alert("An error occurred while updating the news.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  
 
   const displayedNews = showAll ? newsData : newsData.slice(0, 3);
 
@@ -111,18 +82,39 @@ function SeeNews() {
                     : news.description || "No description available."}
                 </p>
               </div>
-              <div className="flex justify-between mt-2">
-                <button
-                  onClick={() => handleUpdate(news._id)}
-                  className="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
-                >
-                  Update
-                </button>
+              <div className="flex justify-end mt-2">
                 <button
                   onClick={() => handleDelete(news._id)}
                   className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                  disabled={loadingId === news._id}
                 >
-                  Delete
+                  {loadingId === image._id ? (
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      ></path>
+                    </svg>
+                    Deleting...
+                  </div>
+                ) : (
+                  "DELETE"
+                )}
                 </button>
               </div>
             </div>
